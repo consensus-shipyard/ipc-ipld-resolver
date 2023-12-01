@@ -13,7 +13,7 @@ blake2b_simd = "1.0"
 bloom = "0.3"
 gcra = "0.4"
 lazy_static = "1.4"
-libipld = { version = "0.14", default-features = false, features = ["dag-cbor"] }
+libipld = { version = "0.16", default-features = false, features = ["dag-cbor"] }
 libp2p = { version = "0.50", default-features = false, features = [
   "gossipsub",
   "kad",
@@ -32,7 +32,7 @@ libp2p = { version = "0.50", default-features = false, features = [
   "secp256k1",
   "plaintext",
 ] }
-libp2p-bitswap = "0.25.1"
+libp2p-bitswap = { git = "https://github.com/fridrik01/libp2p-bitswap.git", branch = "upgrade-fvm" }
 log = "0.4"
 prometheus = "0.13"
 quickcheck = { version = "1", optional = true }
@@ -42,9 +42,12 @@ serde_json = { version = "1.0.91", features = ["raw_value"] }
 thiserror = "1.0.38"
 tokio = { version = "1.16", features = ["full"] }
 
-fvm_ipld_encoding = "0.3"
-fvm_shared = { version = "~3.2", default-features = false, features = ["crypto"], optional = true }
-fvm_ipld_blockstore = { version = "0.1", optional = true }
+#fvm_ipld_encoding = "0.3"
+#fvm_shared = { version = "~3.2", default-features = false, features = ["crypto"], optional = true }
+#fvm_ipld_blockstore = { version = "0.1", optional = true }
+fvm_ipld_encoding = { path = "../ref-fvm/ipld/encoding" }
+fvm_shared = { path = "../ref-fvm/shared", features = ["crypto"] }
+fvm_ipld_blockstore = { path = "../ref-fvm/ipld/blockstore", optional = true}
 
 # Using the IPC SDK without the `fil-actor` feature so as not to depend on the actor `Runtime`.
 # Using the `main` branch instead of the highest available tag `v0.3.0` because the latter doesn't have a feature flag for the `Runtime`.
@@ -53,7 +56,7 @@ ipc-sdk = { git = "https://github.com/consensus-shipyard/ipc.git", default-featu
 [dev-dependencies]
 quickcheck_macros = "1"
 env_logger = "0.10"
-fvm_ipld_hamt = "0.6"
+fvm_ipld_hamt = "0.8.0"
 
 ipc_ipld_resolver = { path = ".", features = ["arb"] }
 
@@ -65,3 +68,6 @@ missing_blocks = ["fvm_ipld_blockstore"]
 [patch.crates-io]
 # Use stable-only features.
 gcra = { git = "https://github.com/consensus-shipyard/gcra-rs.git", branch = "main" }
+
+[patch."https://github.com/consensus-shipyard/ipc"]
+ipc-sdk = { path = "../ipc/ipc/sdk" }
