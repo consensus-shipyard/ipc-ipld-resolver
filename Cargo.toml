@@ -45,9 +45,9 @@ tokio = { version = "1.16", features = ["full"] }
 #fvm_ipld_encoding = "0.3"
 #fvm_shared = { version = "~3.2", default-features = false, features = ["crypto"], optional = true }
 #fvm_ipld_blockstore = { version = "0.1", optional = true }
-fvm_ipld_encoding = { path = "../ref-fvm/ipld/encoding" }
-fvm_shared = { path = "../ref-fvm/shared", features = ["crypto"] }
-fvm_ipld_blockstore = { path = "../ref-fvm/ipld/blockstore", optional = true}
+fvm_ipld_encoding = { git = "https://github.com/filecoin-project/ref-fvm", branch = "upgrade-fvm" }
+fvm_shared = { git = "https://github.com/filecoin-project/ref-fvm", branch = "upgrade-fvm", features = ["crypto"] }
+fvm_ipld_blockstore = { git = "https://github.com/filecoin-project/ref-fvm", branch = "upgrade-fvm", optional = true }
 
 # Using the IPC SDK without the `fil-actor` feature so as not to depend on the actor `Runtime`.
 # Using the `main` branch instead of the highest available tag `v0.3.0` because the latter doesn't have a feature flag for the `Runtime`.
