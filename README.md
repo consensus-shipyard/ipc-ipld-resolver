@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> This repo has been archived and its code merged into https://github.com/consensus-shipyard/ipc
+
 # IPLD Resolver
 
 The IPLD Resolver is a Peer-to-Peer library which can be used to resolve arbitrary CIDs from subnets in InterPlanetary Consensus.
